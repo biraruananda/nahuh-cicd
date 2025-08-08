@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator Web</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; }
+        input[type=text] { width: 300px; height: 50px; font-size: 20px; text-align: right; }
+        button { width: 70px; height: 70px; font-size: 20px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Kalkulator</h1>
+    <form method="POST">
+        <input type="text" name="expression" value="{{ result }}" readonly>
+        <br>
+        {% for row in [["7","8","9","/"],["4","5","6","*"],["1","2","3","-"],["0",".","=","+"],["C"]] %}
+            {% for b in row %}
+                <button type="submit" name="expression" value="{% if b == 'C' %}{% else %}{{ result + b if result != 'Error' else b }}{% endif %}">
+                    {{ b }}
+                </button>
+            {% endfor %}
+            <br>
+        {% endfor %}
+    </form>
+</body>
+</html>

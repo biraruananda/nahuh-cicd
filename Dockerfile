@@ -1,5 +1,12 @@
 FROM python:3.10
+
 WORKDIR /app
-COPY . .
-RUN pip install --no-cache-dir -r requirements.txt || true
+
+COPY cat-cular.py /app
+COPY templates /app/templates
+
+RUN pip install flask
+
+EXPOSE 5000
+
 CMD ["python", "cat-cular.py"]
