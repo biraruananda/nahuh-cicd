@@ -1,17 +1,11 @@
-from flask import Flask, render_template, request
+import unittest
+from app import tambah
 
-app = Flask(__name__)
-
-@app.route("/", methods=["GET", "POST"])
-def calculator():
-    result = ""
-    if request.method == "POST":
-        expression = request.form.get("expression", "")
-        try:
-            result = str(eval(expression))
-        except Exception:
-            result = "Error"
-    return render_template("index.html", result=result)
+class TestApp(unittest.TestCase):
+    def test_tambah(self):
+        self.assertEqual(tambah(5, 3), 8)
+        self.assertEqual(tambah(-1, 1), 0)
+        self.assertNotEqual(tambah(2, 2), 5)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    unittest.main()
